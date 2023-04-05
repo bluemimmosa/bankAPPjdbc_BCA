@@ -40,4 +40,19 @@ public class BankController {
         }
         return allAcc;
     }
+    
+    public Account search(int accNo){
+        ResultSet rs = dbConn.select("SELECT * FROM account WHERE accNo="+accNo+";");
+        try{
+            if(rs != null){
+                rs.next();
+                Account acc = new Account(rs.getInt("accNo"), rs.getString("name"), rs.getInt("balance"));
+                return acc;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return null;
+    }
 }

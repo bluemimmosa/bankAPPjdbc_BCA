@@ -27,6 +27,7 @@ public class MainApplication {
         System.out.println("");
         System.out.println("1. Create New Bank Account.");
         System.out.println("2. List all Accounts.");
+        System.out.println("3. Search an Account.");
         System.out.println("0. Exit");
         System.out.println("");
         System.out.println("Enter your Choice: ");
@@ -35,6 +36,20 @@ public class MainApplication {
     public int getChoice(){
         Scanner sc = new Scanner(System.in);
         return sc.nextInt();
+        
+    }
+    
+    public void searchAccount(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the acc no to search: ");
+        int accNo = sc.nextInt();
+        Account acc = bc.search(accNo);
+        if(acc != null){
+            System.out.println("Account found! The acc detail is:");
+            System.out.println(acc.toString());
+        }else{
+            System.out.println("Account could not be found! Better luck next time.");
+        }
         
     }
     
@@ -78,6 +93,9 @@ public class MainApplication {
                     break;
                 case 2:
                     ma.listAllAccounts();
+                    break;
+                case 3:
+                    ma.searchAccount();
                     break;
                 case 0:
                     System.exit(0);
